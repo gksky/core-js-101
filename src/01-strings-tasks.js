@@ -208,9 +208,7 @@ function getRectangleString(width, height) {
   const bottomRightCorner = '┘';
   const topRightCorner = '┐';
   let result = `${topLeftCorner}${'─'.repeat(width - 2)}${topRightCorner}\n`;
-  for (let i = 0; i < height - 2; i += 1) {
-    result += `│${' '.repeat(width - 2)}│\n`;
-  }
+  result += `│${' '.repeat(width - 2)}│\n`.repeat(height - 2);
   result += `${bottomLeftCorner}${'─'.repeat(width - 2)}${bottomRightCorner}\n`;
   return result;
 }
