@@ -285,6 +285,18 @@ function reverseInteger(num) {
  *   4916123456789012 => false
  */
 function isCreditCardNumber(/* ccn */) {
+  /* let sum = 0;
+  for (let i = 0; i < ccn.length; i += 1) {
+    let cardNum = parseInt(ccn[i], 10);
+    if ((ccn.length - i) % 2 === 0) {
+      cardNum *= 2;
+      if (cardNum > 9) {
+        cardNum += -9;
+      }
+    }
+    sum += cardNum;
+  }
+  return sum % 10 === 0; */
   throw new Error('Not implemented');
 }
 
@@ -400,8 +412,32 @@ function toNaryString(num, n) {
  *   ['/web/assets/style.css', '/.bin/mocha',  '/read.me'] => '/'
  *   ['/web/favicon.ico', '/web-scripts/dump', '/webalizer/logs'] => '/'
  */
-function getCommonDirectoryPath(/* pathes */) {
-  throw new Error('Not implemented');
+function getCommonDirectoryPath(pathes) {
+  const p = [];
+  let result = '';
+  pathes.forEach((item) => {
+    p.push(item.split('/'));
+  });
+
+  let folderIndex = -1;
+  for (let i = 0; i < p[0].length; i += 1) {
+    let eq = 0;
+    for (let j = 0; j < p.length; j += 1) {
+      if (p[0][i] === p[j][i]) {
+        eq = 1;
+      } else {
+        eq = 0;
+      }
+    }
+    folderIndex += eq;
+  }
+
+  p[0].length = folderIndex + 1;
+  if (folderIndex >= 0) {
+    result = `${p[0].join('/')}/`;
+  }
+
+  return result;
 }
 
 
